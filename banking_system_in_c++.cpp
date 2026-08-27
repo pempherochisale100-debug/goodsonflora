@@ -1,144 +1,99 @@
+
 #include <iostream>
-#include <iomanip>
+#include <string>
 
 	using namespace std;
 	
-	  void show_balance (double balance);
-	  double deposit ();
-	  double withdraw (double balance);
-	
-		int main () {
-			
-			double balance = 0;
-			int choice = 0;
-			
-	do {
-		cout << "#########################\n";
-				cout << "SIMPLE BANKING SYSTEM\n";
-			  cout << "#########################\n";
-				cout << "1. Check balance \n";
-				cout << "2. Deposit money \n";
-				cout << "3. Withdraw money \n";
-				cout << "4. Exit \n";
-				
-				 cout << "SELECT AN OPTION (1-4)\n";
-				     cin >> choice;
-				     
-	// to clear error flags when the standard input fails to interpret  the value
-	            // we will use the following functions to clear the input
-				// buffer
-				      cin.clear(); 	
-					  fflush(stdin);		      
-					 
-					 	switch (choice) {
-					 		case 1: {
-					 			
-					 				show_balance (balance);
-					 				
-								break;
-							 }
-							 case 2: {
-							 	
-							 		balance = balance + deposit ();
-							 		show_balance (balance);
-							 		
-								break;
-							 }
-							 case 3: {
-							 	
-							 		 balance = balance - withdraw (balance);
-							         show_balance (balance);
-							         
-								break;
-							 }
-							 case 4:{
-							 		
-							 		cout << "PRESS ANY KEY TO EXIT \n";
-							
-								break;
-							 }
-							 default :{
-							 		
-									 cout << "INVALID CHOICE SELECTED \n";
-							
-								break;
-							 }
-						 }
+	void nl () {
+		cout << "##################################################### \n";
 	}
-	while (choice != 4);	
+	
+		class Student {
+			private:
+				string fullname;
+				int age;
+				string student_id;
+				string program;
+				
+			public:
+				
+				void set_student_details (string name, int a, string id, string pg){
+					
+					if (name.empty()){
+						cerr <<"ERROR: Name field can not be empty \n";
+					}
+					else {
+						this->fullname = name;
+					}
+					if (age <=0 ) {
+						cerr << "ERROR: Age of a person can not be less than 0 \n";
+					}
+					else {
+						this->age = a;
+					}
+					if (id.empty()) {
+						cerr << "ERROR: Student should be provided \n";
+					}
+					else {
+						this->student_id = id;
+					}
+					if (!pg.empty ()) {
+						this->program = pg;
+					}
+					else {
+						cerr << "ERROR: Program of study should not be empty \n";
+					}
+					
+					cout << "SUCCESS: Student data has been added successfully \n";
+				}
+				
+				void display_student_details () {
+					nl ();
+					cout << "			STUDENT DETAILS ENTERED ARE: 			\n";
+					nl ();
+					
+					cout << "Student name:     => " << fullname << endl;
+					cout << "Student's age:    => " << age << endl;
+					cout << "Student's ID      => " << student_id << endl;
+					cout << "Program of study  => " << program << endl;
+					nl ();
+					
+				}
 			
 			
-			
-			
-			
-			
-			
-			
-			
-			
-			
-			
-			
-			return 0;
-		}
-	  void show_balance (double balance){
-	  		cout << "Your balance is MWK" << setprecision (2) << fixed << balance << "\n";
-	  }
-	  
-	  double deposit (){
-	  	
-	  	   double amount = 0;
-	  	     cout << "Enter amount to be deposited \n";
-	  	         cin >> amount;
-	  	      
-	  	 if (amount > 0) {
-	  	 	  return amount;
-		   }  
-		   else {
-		   	   cout << "That's not a valid amount \n"; 
-				  return 0; 
-		   }
-	  	   
-	  	return 0;
-	  }	
-	  
-	  double withdraw (double balance){
-	  	
-	  	double amount = 0;
-	  	   cout << "Enter amount to be withdrawn \n";
-	  	      cin >> amount;
-	  			
-	  			if (amount > balance ) {
-	  				  cout << "insufficient balance,, please deposit some money \n";
-	  				      return 0;
-				  }
-				  else if ( amount <= 0) {
-				  	   cout << "That's not a valid amount \n";
-				  	     return 0;
-				  }
-				  else {
-				  	return amount;
-				  }
-	  	return 0;		
-	  }
+		};
 		
-		
-		
-		
-		
-		
-		
-		
-		
-		
-		
-		
-		
-		
-		
-		
-		
-		
-		
-		
-		
+			int main () {
+				
+				string name, id_number, pro;
+				int zaka;
+				
+					cout << "Enter fullname of the student: ";
+						getline (cin, name);
+					cout << "Enter age of the student: ";
+						cin >> zaka;
+						cin.ignore();
+							if (zaka <=0 ) {
+								cerr << "ERROR: Age of a person can not be less than 0 \n";
+								}
+					cout << "Enter student ID number: ";
+						getline (cin, id_number);
+					cout << "Enter program of study: ";
+						getline (cin, pro);
+						
+				Student student;
+				student.set_student_details(name, zaka, id_number, pro);
+				
+				cout << endl;
+				
+				student.display_student_details();
+				
+				
+				
+				
+				
+				
+				
+				system ("pause>0");
+					return 0;
+			}
